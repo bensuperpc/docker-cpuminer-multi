@@ -29,7 +29,7 @@ RUN set -x \
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
    && cd /tmp/cpuminer \
    && ./autogen.sh \
-   && ./configure CFLAGS="-O2 -mtune=sandybridge -pipe" --with-crypto --with-curl \
+   && ./configure CFLAGS="-O2 -march=sandybridge -mtune=tigerlake -pipe" --with-crypto --with-curl \
    && make -j$(nproc) install \
       # Install dumb-init (avoid PID 1 issues).
       # https://github.com/Yelp/dumb-init
@@ -37,7 +37,6 @@ RUN set -x \
    && cd /tmp/dumb-init \
    && make -j$(nproc) \
    && cp dumb-init /usr/local/bin/dumb-init \
-   && chmod +x /usr/local/bin/dumb-init \
       # Clean-up
    && cd / \
    && apk del --purge .build-deps \
