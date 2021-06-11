@@ -30,7 +30,7 @@ DOCKER := docker
 all: $(IMAGE_LIST)
 
 $(IMAGE_LIST):
-	cd $@ && $(MAKE) all IMAGE_NAME="$(IMAGE_NAME)" VERSION="$(VERSION)"
+	$(MAKE) all IMAGE_NAME="$(IMAGE_NAME)" VERSION="$(VERSION)" -C $@
 
 # https://github.com/linuxkit/linuxkit/tree/master/pkg/binfmt
 qemu:
