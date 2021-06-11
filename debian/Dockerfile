@@ -30,6 +30,7 @@ RUN set -x \
          make \
          pkg-config \
          zlib1g-dev \
+         ccache \
       # Compile from source code.
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
    && cd /tmp/cpuminer \
@@ -56,6 +57,7 @@ RUN set -x \
          libgmp-dev \
          make \
          pkg-config \
+         ccache \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* \
    && rm -rf /tmp/* \
