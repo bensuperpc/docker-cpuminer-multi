@@ -31,5 +31,5 @@ jobs:
         run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
             make all
-      - name: "🧹 Clean"
-        run: make clean
+#      - name: "🧹 Clean"
+#        run: make clean

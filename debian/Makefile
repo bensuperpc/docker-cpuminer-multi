@@ -20,15 +20,34 @@
 #//  CPU: ALL                                                //
 #//                                                          //
 #//////////////////////////////////////////////////////////////
-
-IMAGE_LIST := debian alpine
+BASE_IMAGE := debian:bullseye-slim
+IMAGE_NAME := bensuperpc/cpuminer-multi
+DOCKERFILE := Dockerfile
 
 DOCKER := docker
 
-all: $(IMAGE_LIST)
+TAG := $(shell date '+%Y%m%d')-$(shell git rev-parse --short HEAD)
+DATE_FULL := $(shell date -u "+%Y-%m-%dT%H:%M:%SZ")
+UUID := $(shell cat /proc/sys/kernel/random/uuid)
+VERSION := 1.0.0
 
-$(IMAGE_LIST):
-	cd $@ && $(MAKE) all
+# linux/386 linux/arm64 linux/ppc64le linux/s390x linux/arm/v7 linux/arm/v6
+ARCH_LIST := linux/amd64 linux/386
+comma:= ,
+COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
+
+$(ARCH_LIST): $(DOCKERFILE)
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):debian-$(TAG) -t $(IMAGE_NAME):debian-latest \
+	-t $(IMAGE_NAME):latest -t $(IMAGE_NAME):debian --build-arg BUILD_DATE=$(DATE_FULL) \
+	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $@ --build-arg VERSION=$(VERSION) --load
+
+	
+all: $(DOCKERFILE)
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):debian-$(TAG) -t $(IMAGE_NAME):debian-latest \
+	-t $(IMAGE_NAME):latest -t $(IMAGE_NAME):debian --build-arg BUILD_DATE=$(DATE_FULL) \
+	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $(COM_ARCH_LIST) --build-arg VERSION=$(VERSION) --push
+
+push: all
 
 # https://github.com/linuxkit/linuxkit/tree/master/pkg/binfmt
 qemu:
@@ -38,7 +57,6 @@ qemu:
 	$(DOCKER) buildx inspect --bootstrap
 
 clean:
-	$(MAKE) -C debian clean
-	$(MAKE) -C alpine clean
+	$(DOCKER) images --filter='reference=$(IMAGE_NAME)' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f
 
-.PHONY : debian alpine all
+.PHONY: build push clean qemu $(ARCH_LIST)
