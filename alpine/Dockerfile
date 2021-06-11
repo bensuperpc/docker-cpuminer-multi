@@ -1,4 +1,5 @@
-FROM alpine:3.9
+ARG DOCKER_IMAGE=alpine:3.13
+FROM $DOCKER_IMAGE
 
 RUN set -x \
     # Runtime dependencies.
@@ -20,11 +21,11 @@ RUN set -x \
  && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
  && cd /tmp/cpuminer \
  && ./autogen.sh \
- && ./configure CFLAGS="-O2 -march=native" --with-crypto --with-curl \
- && make install \
+ && ./configure CFLAGS="-O2 -march=sandybridge -mtune=tigerlake -pipe" --with-crypto --with-curl \
+ && make -j$(nproc) install \
     # Install dumb-init (avoid PID 1 issues).
     # https://github.com/Yelp/dumb-init
- && curl -Lo /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.1.3/dumb-init_1.1.3_amd64 \
+ && curl -Lo /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64 \
  && chmod +x /usr/local/bin/dumb-init \
     # Clean-up
  && cd / \
