@@ -16,7 +16,7 @@ you might want to join a pool like https://www.multipool.us/dashboard/help/
 Usage example
 -------------
 
-You can test`:alpine` ([Linux Alpine](https://hub.docker.com/_/alpine)-based) versions
+You can test`:latest` ([Linux Alpine](https://hub.docker.com/_/alpine)-based) versions
 to check that they work on your machine via:
 
     $ docker run --rm bensuperpc/cpuminer-multi:latest cpuminer --cputest
