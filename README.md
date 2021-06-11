@@ -7,7 +7,7 @@ Supported tags and respective `Dockerfile` links
 What is cpuminer-multi
 ----------------------
 
-[**bensuperpc/cpuminer-multi**](https://github.com/bensuperpc/cpuminer-multi) is a multi-threaded CPU miner, fork of pooler's [cpuminer](https://github.com/pooler) and tpruvot's [cpuminer-multi](https://github.com/wernight/docker-cpuminer-multi)  (see AUTHORS for list of contributors).
+[**tpruvot/cpuminer-multi**](https://github.com/tpruvot/cpuminer-multi) is a multi-threaded CPU miner, fork of pooler's [cpuminer](https://github.com/pooler) and tpruvot's [cpuminer-multi](https://github.com/wernight/docker-cpuminer-multi)  (see AUTHORS for list of contributors).
 
 It can mine almost all crypto currencies using CPU. This means you're a lot less likely to get a block, so
 you might want to join a pool like https://www.multipool.us/dashboard/help/
