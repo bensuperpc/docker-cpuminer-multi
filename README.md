@@ -2,7 +2,7 @@ Supported tags and respective `Dockerfile` links
 ================================================
 
   * [`alpine`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/alpine/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
-  * [`debian`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/alpine/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
+  * [`debian`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/debian/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
 
 
 What is cpuminer-multi
