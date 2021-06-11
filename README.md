@@ -1,7 +1,8 @@
 Supported tags and respective `Dockerfile` links
 ================================================
 
-  * [`alpine`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
+  * [`alpine`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/alpine/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
+  * [`debian`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/alpine/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
 
 
 What is cpuminer-multi
@@ -15,8 +16,9 @@ you might want to join a pool like https://www.multipool.us/dashboard/help/
 
 Usage example
 -------------
-
-You can test`:latest` ([Linux Alpine](https://hub.docker.com/_/alpine)-based) versions
+The `:alpine` tag is smaller but some people reported issue with it.
+You can test both `:debian` ([Debian](https://hub.docker.com/_/debian)-based)
+and `:alpine` ([Linux Alpine](https://hub.docker.com/_/alpine)-based) versions
 to check that they work on your machine via:
 
     $ docker run --rm bensuperpc/cpuminer-multi:latest cpuminer --cputest
