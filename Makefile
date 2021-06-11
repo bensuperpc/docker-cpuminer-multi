@@ -20,7 +20,6 @@
 #//  CPU: ALL                                                //
 #//                                                          //
 #//////////////////////////////////////////////////////////////
-#build fail on ubuntu 18.04 and up
 BASE_IMAGE := alpine:3.13
 IMAGE_NAME := bensuperpc/cpuminer-multi
 DOCKERFILE := Dockerfile
