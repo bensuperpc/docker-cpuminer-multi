@@ -1,4 +1,4 @@
-ARG DOCKER_IMAGE=debian:bullseye-slim
+ARG DOCKER_IMAGE=debian:latest
 FROM $DOCKER_IMAGE
 
 ARG DEBIAN_FRONTEND=noninteractive
