@@ -12,13 +12,17 @@ on:
     branches:
     - '*'
   schedule:
-  - cron:  "0 0 */1 * *"
+  - cron:  "0 0 */3 * *"
   workflow_dispatch:
 
 jobs:
   image:
-    name: docker-cpuminer-multi
-    runs-on: ubuntu-20.04
+    name: docker-cpuminer-multi-${{ matrix.distribution }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        distribution: ["archlinux", "debian", "alpine", "ubuntu"]
     steps:
       - name: "📥 Checkout Code"
         uses: actions/checkout@v2.3.4
@@ -27,9 +31,11 @@ jobs:
           fetch-depth: 0
       - name: "🛠️ Docker QEMU"
         run: make qemu
+      - name: "Loggin to hub.docker.com"
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: "🛠️ Build and 📤 Upload to hub.docker.com"
-        run: |
-            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            make all
-#      - name: "🧹 Clean"
-#        run: make clean
+        run: make ${{ matrix.distribution }}
+      - name: "✅ Tests"
+        run: docker run --rm bensuperpc/cpuminer-multi:${{ matrix.distribution }} cpuminer --cputest
+      - name: "🧹 Clean"
+        run: make clean

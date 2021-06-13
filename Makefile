@@ -21,7 +21,7 @@
 #//                                                          //
 #//////////////////////////////////////////////////////////////
 
-IMAGE_LIST := debian alpine
+IMAGE_LIST := archlinux debian alpine ubuntu
 IMAGE_NAME := bensuperpc/cpuminer-multi
 VERSION := 1.0.0
 
@@ -30,7 +30,7 @@ DOCKER := docker
 all: $(IMAGE_LIST)
 
 $(IMAGE_LIST):
-	$(MAKE) all IMAGE_NAME="$(IMAGE_NAME)" VERSION="$(VERSION)" -C $@
+	$(MAKE) all IMAGE_NAME="$(IMAGE_NAME)" VERSION="$(VERSION)" IMAGE_SUBTAG="$@" -C $@
 
 # https://github.com/linuxkit/linuxkit/tree/master/pkg/binfmt
 qemu:
@@ -40,6 +40,6 @@ qemu:
 	$(DOCKER) buildx inspect --bootstrap
 
 clean:
-	$(DOCKER) images --filter='reference=$(IMAGE_NAME)' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f
+	$(DOCKER) images --filter='reference=$(IMAGE_NAME)' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f | true
 
-.PHONY : debian alpine all
+.PHONY : $(IMAGE_LIST) clean qemu all

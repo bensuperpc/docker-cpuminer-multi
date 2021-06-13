@@ -21,6 +21,7 @@
 #//                                                          //
 #//////////////////////////////////////////////////////////////
 BASE_IMAGE := alpine:3.13
+IMAGE_SUBTAG := alpine
 IMAGE_NAME := bensuperpc/cpuminer-multi
 DOCKERFILE := Dockerfile
 
@@ -37,15 +38,15 @@ comma:= ,
 COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
 
 $(ARCH_LIST): $(DOCKERFILE)
-	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):alpine-$(TAG) -t $(IMAGE_NAME):alpine-latest \
-	-t $(IMAGE_NAME):alpine --build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) \
-	--platform $@ --build-arg VERSION=$(VERSION) --load
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) \
+	-t $(IMAGE_NAME):$(IMAGE_SUBTAG) --build-arg BUILD_DATE=$(DATE_FULL) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-latest \
+	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $@ --build-arg VERSION=$(VERSION) --load
 
 	
 all: $(DOCKERFILE)
-	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):alpine-$(TAG) -t $(IMAGE_NAME):alpine-latest \
-	-t $(IMAGE_NAME):alpine --build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) \
-	--platform $(COM_ARCH_LIST) --build-arg VERSION=$(VERSION) --push
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) \
+	-t $(IMAGE_NAME):$(IMAGE_SUBTAG) --build-arg BUILD_DATE=$(DATE_FULL) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-latest \
+	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $(COM_ARCH_LIST) --build-arg VERSION=$(VERSION) --push
 
 push: all
 

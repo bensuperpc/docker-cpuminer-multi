@@ -8,8 +8,8 @@
 #//////////////////////////////////////////////////////////////
 #//                                                          //
 #//  Script, 2021                                            //
-#//  Created: 11, June, 2021                                 //
-#//  Modified: 11, June, 2021                                //
+#//  Created: 13, June, 2021                                 //
+#//  Modified: 13, June, 2021                                //
 #//  file: -                                                 //
 #//  -                                                       //
 #//  Source: https://github.com/wernight/docker-cpuminer-multi                                                //
@@ -20,8 +20,8 @@
 #//  CPU: ALL                                                //
 #//                                                          //
 #//////////////////////////////////////////////////////////////
-BASE_IMAGE := debian:bullseye-slim
-IMAGE_SUBTAG := debian
+BASE_IMAGE := archlinux:latest
+IMAGE_SUBTAG := archlinux
 IMAGE_NAME := bensuperpc/cpuminer-multi
 DOCKERFILE := Dockerfile
 
@@ -33,18 +33,18 @@ UUID := $(shell cat /proc/sys/kernel/random/uuid)
 VERSION := 1.0.0
 
 # linux/386 linux/arm64 linux/ppc64le linux/s390x linux/arm/v7 linux/arm/v6
-ARCH_LIST := linux/amd64 linux/386
+ARCH_LIST := linux/amd64
 comma:= ,
 COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
 
 $(ARCH_LIST): $(DOCKERFILE)
-	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) -t $(IMAGE_NAME):latest \
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) \
 	-t $(IMAGE_NAME):$(IMAGE_SUBTAG) --build-arg BUILD_DATE=$(DATE_FULL) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-latest \
 	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $@ --build-arg VERSION=$(VERSION) --load
 
 	
 all: $(DOCKERFILE)
-	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) -t $(IMAGE_NAME):latest \
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) \
 	-t $(IMAGE_NAME):$(IMAGE_SUBTAG) --build-arg BUILD_DATE=$(DATE_FULL) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-latest \
 	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $(COM_ARCH_LIST) --build-arg VERSION=$(VERSION) --push
 

@@ -20,8 +20,8 @@
 #//  CPU: ALL                                                //
 #//                                                          //
 #//////////////////////////////////////////////////////////////
-BASE_IMAGE := debian:bullseye-slim
-IMAGE_SUBTAG := debian
+BASE_IMAGE := ubuntu:latest
+IMAGE_SUBTAG := ubuntu
 IMAGE_NAME := bensuperpc/cpuminer-multi
 DOCKERFILE := Dockerfile
 
