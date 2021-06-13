@@ -24,7 +24,7 @@ RUN set -x \
          automake \
          curl \
          g++ \
-         gcc \
+         libc6-dev \
          git \
          libcurl4-openssl-dev \
          libjansson-dev \
@@ -59,6 +59,7 @@ RUN set -x \
          libjansson-dev \
          libssl-dev \
          libgmp-dev \
+         libc6-dev \
          make \
          pkg-config \
          ccache \
