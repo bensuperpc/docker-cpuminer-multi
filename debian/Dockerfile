@@ -1,6 +1,8 @@
 ARG DOCKER_IMAGE=debian:bullseye-slim
 FROM $DOCKER_IMAGE
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 LABEL author="Bensuperpc <bensuperpc@gmail.com>"
 LABEL mantainer="Bensuperpc <bensuperpc@gmail.com>"
 
