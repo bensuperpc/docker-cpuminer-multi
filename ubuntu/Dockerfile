@@ -24,8 +24,6 @@ RUN set -x \
          automake \
          curl \
          g++ \
-         gcc \
-         build-essential \
          git \
          libcurl4-openssl-dev \
          libjansson-dev \
@@ -39,7 +37,7 @@ RUN set -x \
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
    && cd /tmp/cpuminer \
    && ./autogen.sh \
-   && ./configure CFLAGS="-O2 -march=sandybridge -mtune=tigerlake -pipe" --with-crypto --with-curl \
+   && ./configure CFLAGS="-O2 -march=sandybridge -mtune=skylake -pipe" --with-crypto --with-curl || cat config.log \
    && make -j$(nproc) install \
       # Install dumb-init (avoid PID 1 issues).
       # https://github.com/Yelp/dumb-init
@@ -54,7 +52,6 @@ RUN set -x \
          automake \
          curl \
          g++ \
-         gcc \
          git \
          libcurl4-openssl-dev \
          libjansson-dev \

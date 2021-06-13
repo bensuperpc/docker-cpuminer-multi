@@ -30,7 +30,7 @@ RUN set -x \
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
    && cd /tmp/cpuminer \
    && ./autogen.sh \
-   && ./configure CFLAGS="-O2 -march=sandybridge -mtune=tigerlake -pipe" --with-crypto --with-curl \
+   && ./configure CFLAGS="-O2 -march=sandybridge -mtune=tigerlake -pipe" --with-crypto --with-curl || cat config.log \
    && make -j$(nproc) install \
       # Install dumb-init (avoid PID 1 issues).
       # https://github.com/Yelp/dumb-init
