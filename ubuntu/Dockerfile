@@ -24,7 +24,7 @@ RUN set -x \
          automake \
          curl \
          g++ \
-         libc6-dev \
+         build-essential \
          git \
          libcurl4-openssl-dev \
          libjansson-dev \
@@ -53,7 +53,6 @@ RUN set -x \
          automake \
          curl \
          g++ \
-         libc6-dev \
          git \
          libcurl4-openssl-dev \
          libjansson-dev \
