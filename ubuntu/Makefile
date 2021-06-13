@@ -33,7 +33,7 @@ UUID := $(shell cat /proc/sys/kernel/random/uuid)
 VERSION := 1.0.0
 
 # linux/386 linux/arm64 linux/ppc64le linux/s390x linux/arm/v7 linux/arm/v6
-ARCH_LIST := linux/amd64 linux/386
+ARCH_LIST := linux/amd64
 comma:= ,
 COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
 
