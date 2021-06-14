@@ -13,10 +13,11 @@ RUN set -x \
       # Runtime dependencies.
    && dnf upgrade -y --refresh \
    && dnf install -y \
-         gmp \
-         jansson \
+         gmp-devel \
+         jansson-devel \
          curl \
-         openssl \
+         openssl-devel \
+         libcurl-devel \
       # Build dependencies.
    && dnf install -y \
          autoconf \
