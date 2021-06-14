@@ -45,10 +45,8 @@ RUN set -x \
    && dnf remove -y \
          autoconf \
          automake \
-         curl \
          gcc-c++ \
          git \
-         glibc-static \
          make \
          ccache \
    && dnf autoremove -y \
