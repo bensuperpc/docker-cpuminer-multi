@@ -30,7 +30,6 @@ RUN set -x \
          libssl-dev \
          libgmp-dev \
          make \
-         pkg-config \
          zlib1g-dev \
          ccache \
       # Compile from source code.
@@ -58,7 +57,6 @@ RUN set -x \
          libssl-dev \
          libgmp-dev \
          make \
-         pkg-config \
          ccache \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* \

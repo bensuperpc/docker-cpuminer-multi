@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distribution: ["archlinux", "debian", "alpine", "ubuntu"]
+        distribution: ["archlinux", "debian", "alpine", "ubuntu", "fedora"]
     steps:
       - name: "📥 Checkout Code"
         uses: actions/checkout@v2.3.4

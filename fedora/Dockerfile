@@ -1,4 +1,4 @@
-ARG DOCKER_IMAGE=debian:latest
+ARG DOCKER_IMAGE=fedora:latest
 FROM $DOCKER_IMAGE
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,26 +11,20 @@ ENV VERSION=$VERSION
 
 RUN set -x \
       # Runtime dependencies.
-   && apt-get update \
-   && apt-get install -y \
-         libcurl4 \
-         libgmp10 \
-         libjansson4 \
-         libssl-dev \
+   && dnf upgrade -y --refresh \
+   && dnf install -y \
+         gmp \
+         jansson \
+         curl \
          openssl \
       # Build dependencies.
-   && apt-get install -y \
+   && dnf install -y \
          autoconf \
          automake \
-         curl \
-         g++ \
+         gcc-c++ \
          git \
-         libcurl4-openssl-dev \
-         libjansson-dev \
-         libssl-dev \
-         libgmp-dev \
          make \
-         zlib1g-dev \
+         zlib-devel \
          ccache \
       # Compile from source code.
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
@@ -46,20 +40,16 @@ RUN set -x \
       && cp dumb-init /usr/local/bin/dumb-init \
       # Clean-up
    && cd / \
-   && apt-get purge --auto-remove -y \
+   && dnf remove -y \
          autoconf \
          automake \
          curl \
-         g++ \
+         gcc-c++ \
          git \
-         libcurl4-openssl-dev \
-         libjansson-dev \
-         libssl-dev \
-         libgmp-dev \
          make \
          ccache \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/* \
+   && dnf autoremove -y \
+   && dnf clean packages \
    && rm -rf /tmp/* \
       # Verify
       && cpuminer --cputest \

@@ -21,7 +21,7 @@
 #//                                                          //
 #//////////////////////////////////////////////////////////////
 
-IMAGE_LIST := archlinux debian alpine ubuntu
+IMAGE_LIST := archlinux debian alpine ubuntu fedora
 IMAGE_NAME := bensuperpc/cpuminer-multi
 VERSION := 1.0.0
 
