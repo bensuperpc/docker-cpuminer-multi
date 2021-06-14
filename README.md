@@ -5,6 +5,7 @@ Supported tags and respective `Dockerfile` links
   * [`debian`, `latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/debian/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
   * [`archlinux`,`archlinux-latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/archlinux/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
   * [`ubuntu`, `ubuntu-latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/ubuntu/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
+  * [`ubuntu`, `fedora-latest` (Dockerfile)](https://github.com/bensuperpc/docker-cpuminer-multi/blob/master/fedora/Dockerfile) [![](https://images.microbadger.com/badges/image/bensuperpc/docker-cpuminer-multi.svg)](https://microbadger.com/images/bensuperpc/docker-cpuminer-multi "Get your own image badge on microbadger.com")
 
 [![docker-cpuminer-multi](https://github.com/bensuperpc/docker-cpuminer-multi/actions/workflows/main.yml/badge.svg)](https://github.com/bensuperpc/docker-cpuminer-multi/actions/workflows/main.yml)
 
