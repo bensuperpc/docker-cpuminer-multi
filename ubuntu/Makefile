@@ -37,8 +37,9 @@ ARCH_LIST := linux/amd64
 comma:= ,
 COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
 
+#-t $(IMAGE_NAME):latest
 $(ARCH_LIST): $(DOCKERFILE)
-	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) -t $(IMAGE_NAME):latest \
+	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-$(TAG) \
 	-t $(IMAGE_NAME):$(IMAGE_SUBTAG) --build-arg BUILD_DATE=$(DATE_FULL) -t $(IMAGE_NAME):$(IMAGE_SUBTAG)-latest \
 	--build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $@ --build-arg VERSION=$(VERSION) --load
 
