@@ -26,6 +26,7 @@ RUN set -x \
          git \
          make \
          zlib-devel \
+         glibc-static \
          ccache \
       # Compile from source code.
    && git clone --recursive https://github.com/tpruvot/cpuminer-multi.git /tmp/cpuminer \
@@ -47,6 +48,7 @@ RUN set -x \
          curl \
          gcc-c++ \
          git \
+         glibc-static \
          make \
          ccache \
    && dnf autoremove -y \
