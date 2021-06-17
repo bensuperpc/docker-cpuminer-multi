@@ -27,6 +27,7 @@ to check that they work on your machine via:
 
     $ docker run --rm bensuperpc/cpuminer-multi:latest cpuminer --cputest
     $ docker run --rm bensuperpc/cpuminer-multi:latest cpuminer --benchmark
+    $ docker run --rm bensuperpc/cpuminer-multi cpuminer -a cryptonight -o stratum+tcp://xmr.pool.minergate.com:45700 -u <EMail> -p x
 
 To see the CLI help do:
 
